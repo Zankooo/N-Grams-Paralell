@@ -27,3 +27,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+#vsi file-i v resources. Aka veliki fajli z besedilom za testiranje#
+/resources/*.txt
