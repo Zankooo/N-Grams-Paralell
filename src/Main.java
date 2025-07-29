@@ -60,7 +60,8 @@ public class Main {
             konec = System.currentTimeMillis();
         }
         scanner.close();
-        System.out.println("Celoten proces je trajal: " + (konec - zacetek) + " ms");
+        System.out.println("\u001B[32m✔ ⏱ Celoten proces je trajal: " + (konec - zacetek) + " ms\u001B[0m");
+
     }
 
     public static void narediVseTxtParallel(int n) {
