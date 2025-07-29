@@ -14,14 +14,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Izberi besedilo:");
         for (int i = 0; i < datoteke.length; i++) {
-            System.out.println((i+1) + ". " + datoteke[i]);
+            System.out.println((i + 1) + ". " + datoteke[i]);
         }
         while (true) {
             System.out.print("Vaša izbira (1-" + datoteke.length + "): ");
             if (scanner.hasNextInt()) {
                 int izbira = scanner.nextInt();
                 if (izbira >= 1 && izbira <= datoteke.length) {
-                    return "resources/" + datoteke[izbira-1];
+                    return "resources/" + datoteke[izbira - 1];
                 }
             } else {
                 scanner.next();
@@ -68,9 +68,11 @@ public class Main {
         String filePath = izbiraTeksta();
         String prebrano = preberiIzTxt(filePath);
         String cleaned = odstraniZnakce(prebrano);
+
         parallelGenerateNGrams(n, cleaned);
+
         Map<String, Double> relFrekvence = izracunajRelativneFrekvence();
-        izpisiVse(relFrekvence);
+        //izpisiVse(relFrekvence);
         System.out.println("--------------------------------");
     }
 
@@ -79,7 +81,7 @@ public class Main {
         String cleaned = odstraniZnakce(besedilo);
         parallelGenerateNGrams(n, cleaned);
         Map<String, Double> relFrekvence = izracunajRelativneFrekvence();
-        izpisiVse(relFrekvence);
+        // izpisiVse(relFrekvence);
         System.out.println("--------------------------------");
     }
 
@@ -93,18 +95,63 @@ public class Main {
         return "napaka, pri branju besed iz file-a";
     }
 
+    //    public static Map<String, Integer> generateNGrams(int n, String text) {
+//        Map<String, Integer> nGrams = new HashMap<>();
+//
+//
+//
+//        for (int i = 0; i < povedi.length; i++) {
+//            String enaPoved = povedi[i].trim();
+//            if (enaPoved.isEmpty()) continue;
+//            String[] besede = enaPoved.split("\\s+");
+//            if (besede.length < n) continue;
+//            for (int j = 0; j <= besede.length - n; j++) {
+//                String[] ngramArray = Arrays.copyOfRange(besede, j, j + n);
+//                String ngram = String.join(" ", ngramArray).trim();
+//
+//                if (nGrams.containsKey(ngram)) {
+//                    nGrams.put(ngram, nGrams.get(ngram) + 1);
+//                } else {
+//                    nGrams.put(ngram, 1);
+//                }
+//            }
+//        }
+//        return nGrams;
+//    }
+
+    // VZPOREDNA RAZDELITEV NA 10 DELOV
     public static void parallelGenerateNGrams(int n, String text) {
         nGrams.clear();
-        String[] povedi = text.split("[.!?]");
-        System.out.println("Število povedi: " + povedi.length);
 
-        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        // 10 corov
+        int numSplits = Runtime.getRuntime().availableProcessors();
+        // da ugotovimo kolk je stevilo povedi
+        String[] steviloPovedi = text.split("[.!?]");
+        System.out.println("Število povedi: " + steviloPovedi.length);
 
-        for (String enaPoved : povedi) {
-            String trimmed = enaPoved.trim();
-            if (!trimmed.isEmpty()) {
-                executor.execute(() -> generateNGramsForSentence(trimmed, n));
-            }
+        // split size je kolk enot je dolg en kos besedila
+        int splitSize = text.length() / numSplits;
+        List<String> parts = new ArrayList<>();
+
+        // Razdelimo besedilo na 10 približno enakih delov
+        for (int i = 0; i < numSplits; i++) {
+            int start = i * splitSize;
+            int end = (i == numSplits - 1) ? text.length() : (i + 1) * splitSize;
+            parts.add(text.substring(start, end));
+        }
+
+        ExecutorService executor = Executors.newFixedThreadPool(numSplits);
+
+        for (String part : parts) {
+            executor.execute(() -> {
+                String[] povedi = part.split("[.!?]");
+                for (String enaPoved : povedi) {
+                    String trimmed = enaPoved.trim();
+                    if (!trimmed.isEmpty()) {
+                        generateNGramsForSentence(trimmed, n);
+                    }
+                }
+            });
         }
 
         executor.shutdown();
@@ -161,3 +208,7 @@ public class Main {
         }
     }
 }
+
+
+// testirat mores brez printanja ker je neuporabno printanje
+// andro bi naredu da exportas v csv.
