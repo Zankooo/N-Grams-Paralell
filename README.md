@@ -10,13 +10,18 @@
 ### Javi virtual machine sem dal na voljo cca 16GB max heap size (rama) za izvajanje programa. Na trajanje programa je zelo pomembno koliko ga imamo na voljo, saj uporabljamo v programu podatkovno strukturo HashMap in kot input dajemo podatke ki so precej veliki. (HashMap in veliki podatki --> hitrost izvajanja programa odvisna od velikosti rama)</ins>
 ### Testiranje je bilo opravljenju na petih različno velikih .txt file-ih. Dolzina n-gramov pa je od 2 do 5. Tesitranje je bilo opravljeno brez printanja n-gramov z pojavitvami in relativnimi frekvencami. Če bi jih printali bi program trajal občutno dlje.  
 
-| Tabela    | n = 2    | n = 3    | n = 4    | n = 5    |
-|-----------|----------|----------|----------|----------|
-| **123MB** | 6.174ms  | 7.333ms  | 9.442ms  | 10.720ms |
-| **234MB** | 13.529ms | 22.771ms | 27.805ms | 32.627ms |
-| **350MB** | 19.535ms | 32.419ms | 40.578ms | 41.631ms |
-| **490MB** | 14.793ms | 20.828ms | 28.628ms | 36.848ms |
-| **613MB** | 16.711ms | 24.694ms | 35.710ms | 42.679ms |
+
+| Tabela    | n = 2      | n = 3      | n = 4      | n = 5      |
+|-----------|------------|------------|------------|------------|
+| **123MB** | 6,174 sec  | 7,333 sec  | 9,442 sec  | 10,720 sec |
+| **234MB** | 13,529 sec | 22,771 sec | 27,805 sec | 32,627 sec |
+| **350MB** | 19,535 sec | 32,419 sec | 40,578 sec | 41,631 sec |
+| **490MB** | 14,793 sec | 20,828 sec | 28,628 sec | 36,848 sec |
+| **613MB** | 16,711 sec | 24,694 sec | 35,710 sec | 42,679 sec |
+
+#### Opomba: številke so zapisane v evropskem formatu, kjer vejica pomeni decimalko
+
+<hr>
 
 ## <ins>Pomembne opombe za uspešno delovanje programa</ins>
 ### Program te na začetku vpraša; ali želiš vpisati besedilo kot input ali pa boš bral besede iz external file-a (kot input sem dal možnost samo za to, da sem lahko testiral na zelo kratkem besedilu.)
