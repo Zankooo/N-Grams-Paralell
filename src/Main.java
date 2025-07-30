@@ -73,7 +73,7 @@ public class Main {
         parallelGenerateNGrams(n, cleaned);
 
         Map<String, Double> relFrekvence = izracunajRelativneFrekvence();
-        //izpisiVse(relFrekvence);
+        // izpisiVse(relFrekvence);
         System.out.println("--------------------------------");
     }
 
@@ -95,30 +95,6 @@ public class Main {
         }
         return "napaka, pri branju besed iz file-a";
     }
-
-    //    public static Map<String, Integer> generateNGrams(int n, String text) {
-//        Map<String, Integer> nGrams = new HashMap<>();
-//
-//
-//
-//        for (int i = 0; i < povedi.length; i++) {
-//            String enaPoved = povedi[i].trim();
-//            if (enaPoved.isEmpty()) continue;
-//            String[] besede = enaPoved.split("\\s+");
-//            if (besede.length < n) continue;
-//            for (int j = 0; j <= besede.length - n; j++) {
-//                String[] ngramArray = Arrays.copyOfRange(besede, j, j + n);
-//                String ngram = String.join(" ", ngramArray).trim();
-//
-//                if (nGrams.containsKey(ngram)) {
-//                    nGrams.put(ngram, nGrams.get(ngram) + 1);
-//                } else {
-//                    nGrams.put(ngram, 1);
-//                }
-//            }
-//        }
-//        return nGrams;
-//    }
 
     // VZPOREDNA RAZDELITEV NA 10 DELOV
     public static void parallelGenerateNGrams(int n, String text) {
@@ -208,8 +184,10 @@ public class Main {
             System.out.printf("%s -> %d -> %.4f%%%n", ngram, ponovitve, relFrekvenca);
         }
     }
+
 }
 
 
-// testirat mores brez printanja ker je neuporabno printanje
-// andro bi naredu da exportas v csv.
+// testirat mores brez printanja ker je neuporabno printanje -> potem to omenit v readme
+// andro bi naredu da exportas v csv rezultate ker je v konzolo printat bz
+// omenit tudi podatkovno strukturo hashmap v readme in da je zanjo odvisno koliko jvm rama ji damo
