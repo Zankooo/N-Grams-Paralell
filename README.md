@@ -1,4 +1,4 @@
-# Analysis of N-grams (simple text analysis) - vzporedna izvedba
+# Analysis of N-grams (simple text analysis) - vzporedna (paralelna) izvedba 
 
 ## <ins>Kaj dela</ins>:
 ### Kaj program dela si lahko prebereš na naslednji povezavi:
@@ -11,13 +11,13 @@
 ### Testiranje je bilo opravljenju na petih različno velikih .txt file-ih. Dolzina n-gramov pa je od 2 do 5. Tesitranje je bilo opravljeno brez printanja n-gramov z pojavitvami in relativnimi frekvencami. Če bi jih printali bi program trajal občutno dlje.  
 
 
-| Tabela    | n = 2      | n = 3      | n = 4      | n = 5      |
-|-----------|------------|------------|------------|------------|
-| **123MB** | 6,174 sec  | 7,333 sec  | 9,442 sec  | 10,720 sec |
-| **234MB** | 13,529 sec | 22,771 sec | 27,805 sec | 32,627 sec |
-| **350MB** | 19,535 sec | 32,419 sec | 40,578 sec | 41,631 sec |
-| **490MB** | 14,793 sec | 20,828 sec | 28,628 sec | 36,848 sec |
-| **613MB** | 16,711 sec | 24,694 sec | 35,710 sec | 42,679 sec |
+| Tabela    | n = 2     | n = 3     | n = 4     | n = 5     |
+|-----------|-----------|-----------|-----------|-----------|
+| **123MB** | 6,17 sec  | 7,33 sec  | 9,44 sec  | 10,72 sec |
+| **234MB** | 13,53 sec | 22,77 sec | 27,81 sec | 32,63 sec |
+| **350MB** | 19,54 sec | 32,42 sec | 40,58 sec | 41,63 sec |
+| **490MB** | 14,80 sec | 20,83 sec | 28,63 sec | 36,85 sec |
+| **613MB** | 16,71 sec | 24,69 sec | 35,71 sec | 42,68 sec |
 
 #### Opomba: številke so zapisane v evropskem formatu, kjer vejica pomeni decimalko
 

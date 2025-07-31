@@ -34,8 +34,8 @@ public class Main {
         long maxHeapSize = Runtime.getRuntime().maxMemory();
         System.out.println("Max Heap Size (količina rama za JVM): " + (maxHeapSize / (1024 * 1024)) + " MB");
 
-        long zacetek;
-        long konec;
+        double zacetek;
+        double konec;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("--------------------------------");
@@ -44,7 +44,7 @@ public class Main {
         System.out.println();
         int kaj = scanner.nextInt();
         if (kaj == 1) {
-            System.out.print("Vpisi dolzino n-gramov (ene sekvence) (1-5): ");
+            System.out.print("Vpisi dolzino n-gramov (ene sekvence) (2-5): ");
             int n = scanner.nextInt();
             scanner.nextLine();
             System.out.print("Vpisi besedilo: ");
@@ -53,14 +53,18 @@ public class Main {
             narediVseInputParallel(n, text);
             konec = System.currentTimeMillis();
         } else {
-            System.out.print("Vpisi dolzino n-gramov (ene sekvence) (1-5): ");
+            System.out.print("Vpisi dolzino n-gramov (ene sekvence) (2-5): ");
             int n = scanner.nextInt();
             zacetek = System.currentTimeMillis();
             narediVseTxtParallel(n);
             konec = System.currentTimeMillis();
         }
         scanner.close();
-        System.out.println("\u001B[32m✔ ⏱ Celoten proces je trajal: " + (konec - zacetek) + " ms\u001B[0m");
+
+        double casIzvedbeSekunde = (konec - zacetek) / 1000;
+
+        String evropskaNotacijaCasIzvedbeSec = String.format("%.2f", casIzvedbeSekunde).replace('.', ',');
+        System.out.println("\u001B[32m✔ ⏱ Celoten sekvenčni proces je trajal: " + evropskaNotacijaCasIzvedbeSec + " sec\u001B[0m");
 
     }
 
@@ -100,7 +104,7 @@ public class Main {
     public static void parallelGenerateNGrams(int n, String text) {
         nGrams.clear();
 
-        // 10 corov
+        // 10 corov moj računalnik
         int numSplits = Runtime.getRuntime().availableProcessors();
         // da ugotovimo kolk je stevilo povedi
         String[] steviloPovedi = text.split("[.!?]");
