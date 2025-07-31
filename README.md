@@ -33,5 +33,5 @@
 
 ## <ins>Druge informacije</ins>
 ### - uporabljal sem trenutno najnovejšo verzijo Jave; JDK 24
-### - pri izdelovanju programa sem si pomagal z umetno inteligenco - predvsem ChatGPT-4o, Gemini 2.5 pro in DeepSeek
+### - pri izdelovanju programa sem si pomagal z umetno inteligenco - ChatGPT-4o in pa tudi Gemini 2.5 pro in DeepSeek
 
