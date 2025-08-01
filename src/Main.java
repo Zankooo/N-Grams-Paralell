@@ -9,26 +9,7 @@ public class Main {
 
     private static ConcurrentHashMap<String, AtomicInteger> nGrams = new ConcurrentHashMap<>();
 
-    public static String izbiraTeksta() {
-        String[] datoteke = {"123MB.txt", "234MB.txt", "350MB.txt", "490MB.txt", "613MB.txt"};
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Izberi besedilo:");
-        for (int i = 0; i < datoteke.length; i++) {
-            System.out.println((i + 1) + ". " + datoteke[i]);
-        }
-        while (true) {
-            System.out.print("Vaša izbira (1-" + datoteke.length + "): ");
-            if (scanner.hasNextInt()) {
-                int izbira = scanner.nextInt();
-                if (izbira >= 1 && izbira <= datoteke.length) {
-                    return "resources/" + datoteke[izbira - 1];
-                }
-            } else {
-                scanner.next();
-            }
-            System.out.println("Neveljavna izbira. Prosimo, vnesite številko med 1 in " + datoteke.length + ".");
-        }
-    }
+
 
     public static void main(String[] args) {
         long maxHeapSize = Runtime.getRuntime().maxMemory();
@@ -68,6 +49,8 @@ public class Main {
 
     }
 
+
+    // ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
     public static void narediVseTxtParallel(int n) {
         System.out.println("--------------------------------");
         String filePath = izbiraTeksta();
@@ -89,6 +72,27 @@ public class Main {
         // izpisiVse(relFrekvence);
         System.out.println("--------------------------------");
     }
+    // ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+    public static String izbiraTeksta() {
+        String[] datoteke = {"123MB.txt", "234MB.txt", "350MB.txt", "490MB.txt", "613MB.txt"};
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Izberi besedilo:");
+        for (int i = 0; i < datoteke.length; i++) {
+            System.out.println((i + 1) + ". " + datoteke[i]);
+        }
+        while (true) {
+            System.out.print("Vaša izbira (1-" + datoteke.length + "): ");
+            if (scanner.hasNextInt()) {
+                int izbira = scanner.nextInt();
+                if (izbira >= 1 && izbira <= datoteke.length) {
+                    return "resources/" + datoteke[izbira - 1];
+                }
+            } else {
+                scanner.next();
+            }
+            System.out.println("Neveljavna izbira. Prosimo, vnesite številko med 1 in " + datoteke.length + ".");
+        }
+    }
 
     public static String preberiIzTxt(String path) {
         Path filePath = Path.of(path);
@@ -100,11 +104,12 @@ public class Main {
         return "napaka, pri branju besed iz file-a";
     }
 
-    // VZPOREDNA RAZDELITEV NA 10 DELOV
+    // ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+
     public static void parallelGenerateNGrams(int n, String text) {
         nGrams.clear();
 
-        // 10 corov moj računalnik
+        // 10 corov moj računalnik, zato na 10 delov
         int numSplits = Runtime.getRuntime().availableProcessors();
         // da ugotovimo kolk je stevilo povedi
         String[] steviloPovedi = text.split("[.!?]");
@@ -189,9 +194,5 @@ public class Main {
         }
     }
 
+
 }
-
-
-// testirat mores brez printanja ker je neuporabno printanje -> potem to omenit v readme
-// andro bi naredu da exportas v csv rezultate ker je v konzolo printat bz
-// omenit tudi podatkovno strukturo hashmap v readme in da je zanjo odvisno koliko jvm rama ji damo

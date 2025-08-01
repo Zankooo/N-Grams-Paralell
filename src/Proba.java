@@ -3,4 +3,5 @@ public class Proba {
         int steviloCorov = Runtime.getRuntime().availableProcessors();
         System.out.println("Stevilo corov je " + steviloCorov);
     }
+
 }
