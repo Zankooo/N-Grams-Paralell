@@ -17,11 +17,11 @@
 
 Tabela    | n = 2     | n = 3     | n = 4     | n = 5
 ----------|-----------|-----------|-----------|-----------
-**123MB** | 4.17 sec  | 5.33 sec  | 7.44 sec  | 8.72 sec 
-**234MB** | 11.53 sec | 20.77 sec | 25.81 sec | 30.63 sec 
-**350MB** | 17.54 sec | 30.42 sec | 38.58 sec | 39.63 sec 
-**490MB** | 12.80 sec | 18.83 sec | 26.63 sec | 34.85 sec 
-**613MB** | 14.71 sec | 22.69 sec | 33.71 sec | 40.68 sec
+**123MB** | 4,17 sec  | 5,33 sec  | 7,44 sec  | 8,72 sec 
+**234MB** | 11,53 sec | 20,77 sec | 25,81 sec | 30,63 sec 
+**350MB** | 17,54 sec | 30,42 sec | 38,58 sec | 39,63 sec 
+**490MB** | 12,80 sec | 18,83 sec | 26,63 sec | 34,85 sec 
+**613MB** | 14,71 sec | 22,69 sec | 33,71 sec | 40,68 sec
 
 
 #### Opomba: številke so zapisane v evropskem formatu, kjer vejica pomeni decimalko
