@@ -15,13 +15,14 @@
 ### Testiranje je bilo opravljenju na petih različno velikih .txt datotekah. Dolžina n-gramov pa je od 2 do 5. Opravljeno je bilo brez printanja n-gramov z pojavitvami in relativnimi frekvencami. Če bi jih printali bi program trajal občutno dlje. Če želimo printati n-grame samo odkomentiramo vrstico v funkciji 'narediVseTxt'
 ### Tabela rezultatov testiranja:
 
-| Tabela    | n = 2     | n = 3     | n = 4     | n = 5     |
-|-----------|-----------|-----------|-----------|-----------|
-| **123MB** | 6,17 sec  | 7,33 sec  | 9,44 sec  | 10,72 sec |
-| **234MB** | 13,53 sec | 22,77 sec | 27,81 sec | 32,63 sec |
-| **350MB** | 19,54 sec | 32,42 sec | 40,58 sec | 41,63 sec |
-| **490MB** | 14,80 sec | 20,83 sec | 28,63 sec | 36,85 sec |
-| **613MB** | 16,71 sec | 24,69 sec | 35,71 sec | 42,68 sec |
+Tabela    | n = 2     | n = 3     | n = 4     | n = 5
+----------|-----------|-----------|-----------|-----------
+**123MB** | 4.17 sec  | 5.33 sec  | 7.44 sec  | 8.72 sec 
+**234MB** | 11.53 sec | 20.77 sec | 25.81 sec | 30.63 sec 
+**350MB** | 17.54 sec | 30.42 sec | 38.58 sec | 39.63 sec 
+**490MB** | 12.80 sec | 18.83 sec | 26.63 sec | 34.85 sec 
+**613MB** | 14.71 sec | 22.69 sec | 33.71 sec | 40.68 sec
+
 
 #### Opomba: številke so zapisane v evropskem formatu, kjer vejica pomeni decimalko
 
