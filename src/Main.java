@@ -6,6 +6,8 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
+    private static double zacetek;
+    private static double konec;
 
     private static ConcurrentHashMap<String, AtomicInteger> nGrams = new ConcurrentHashMap<>();
 
@@ -15,8 +17,7 @@ public class Main {
         long maxHeapSize = Runtime.getRuntime().maxMemory();
         System.out.println("Max Heap Size (količina rama za JVM): " + (maxHeapSize / (1024 * 1024)) + " MB");
 
-        double zacetek;
-        double konec;
+        
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("--------------------------------");
@@ -30,13 +31,11 @@ public class Main {
             scanner.nextLine();
             System.out.print("Vpisi besedilo: ");
             String text = scanner.nextLine();
-            zacetek = System.currentTimeMillis();
             narediVseInputParallel(n, text);
             konec = System.currentTimeMillis();
         } else {
             System.out.print("Vpisi dolzino n-gramov (ene sekvence) (2-5): ");
             int n = scanner.nextInt();
-            zacetek = System.currentTimeMillis();
             narediVseTxtParallel(n);
             konec = System.currentTimeMillis();
         }
@@ -45,7 +44,7 @@ public class Main {
         double casIzvedbeSekunde = (konec - zacetek) / 1000;
 
         String evropskaNotacijaCasIzvedbeSec = String.format("%.2f", casIzvedbeSekunde).replace('.', ',');
-        System.out.println("\u001B[32m✔ ⏱ Celoten sekvenčni proces je trajal: " + evropskaNotacijaCasIzvedbeSec + " sec\u001B[0m");
+        System.out.println("\u001B[32m✔ ⏱ Celoten vzporedni proces je trajal: " + evropskaNotacijaCasIzvedbeSec + " sec\u001B[0m");
 
     }
 
@@ -54,6 +53,7 @@ public class Main {
     public static void narediVseTxtParallel(int n) {
         System.out.println("--------------------------------");
         String filePath = izbiraTeksta();
+        zacetek = System.currentTimeMillis();
         String prebrano = preberiIzTxt(filePath);
         String cleaned = odstraniZnakce(prebrano);
 
@@ -66,6 +66,7 @@ public class Main {
 
     public static void narediVseInputParallel(int n, String besedilo) {
         System.out.println("--------------------------------");
+        zacetek = System.currentTimeMillis();
         String cleaned = odstraniZnakce(besedilo);
         parallelGenerateNGrams(n, cleaned);
         Map<String, Double> relFrekvence = izracunajRelativneFrekvence();
